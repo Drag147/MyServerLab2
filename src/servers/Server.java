@@ -165,7 +165,6 @@ public class Server {
                 break;
             default:
                 response += response += "text/html" + "\n";
-
         }
 
         response += "Connection: close\n";
