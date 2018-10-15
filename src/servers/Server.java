@@ -56,7 +56,6 @@ public class Server {
             int indexRef = request.indexOf("/") + 1;
             int lastRef = request.indexOf("HTTP", indexRef) - 1;
             fileReq = request.substring(indexRef, lastRef);
-
         }
         catch (Exception ex){
             waiteConnection();
@@ -76,13 +75,13 @@ public class Server {
             if (fileReq.equals("") || fileReq.equals("index.php") || fileReq.equals("index")) {
                 fileReq = "index.html";
             }
-            if (fileReq.equals("favicon.ico")) {
-                typeReq = "";
-                inS.close();
-                outS.close();
-                this.socketClient.close();
-                return;
-            }
+//            if (fileReq.equals("favicon.ico")) {
+//                typeReq = "";
+//                inS.close();
+//                outS.close();
+//                this.socketClient.close();
+//                return;
+//            }
 
             File file = new File("html/"+fileReq);
 
@@ -139,13 +138,36 @@ public class Server {
         response += "Content-Length: " + file.length() + "\n";
         response += "Content-Type: ";
 
-        if(fileReq.contains(".html")) {
-            response += "text/html" + "\n";
+        switch (fileReq.substring(fileReq.indexOf(".")+1).toLowerCase()){
+            case "html":
+                response += "text/html" + "\n";
+                break;
+            case "css":
+                response += "text/css" + "\n";
+                break;
+            case "ico":
+                response += "image/vnd.microsoft.icon" + "\n";
+                break;
+            case "png":
+                response += "image/png" + "\n";
+                break;
+            case "jpg":
+                response += "image/jpeg" + "\n";
+                break;
+            case "jpeg":
+                response += "image/jpeg" + "\n";
+                break;
+            case "min.js":
+                response += "text/javascript" + "\n";
+                break;
+            case "js":
+                response += "text/javascript" + "\n";
+                break;
+            default:
+                response += response += "text/html" + "\n";
+
         }
-        else{
-            if(fileReq.contains(".css"))
-            response += "text/css" + "\n";
-        }
+
         response += "Connection: close\n";
         response += "Server: Server\n\n";
 

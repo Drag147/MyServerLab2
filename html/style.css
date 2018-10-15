@@ -25,4 +25,38 @@
 h1 {
     text-align: center;
     font-size: 50px;
+    margin: 50px;
+}
+
+h2{
+    text-align: center;
+    font-size: 45px;
+    margin: 45px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body{
+  background:#ccc;
+}
+.main, .main2 {
+  width:1000px;
+  display:block;
+  margin:0 auto;
+}
+
+img {
+  max-width:100%;
+  height: auto;
+}
+.slick-center {
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    transform: scale(1.5);
+}
+.slick-dots li button:before {
+  color:#fff;
 }
